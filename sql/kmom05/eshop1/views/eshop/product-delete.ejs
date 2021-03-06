@@ -1,0 +1,40 @@
+<% res = res[0] %>
+<%- include("header", {title: title}); %>
+
+<div class="content">
+    <h1>Delete product details</h1>
+
+    <p>This is details for product: <%= res.product_id %></p>
+
+    <form class="label-left" method="post" action="/eshop/product/delete"> 
+        <fieldset> 
+            <legend>Delete product</legend>
+
+            <div class="row">
+                <label for="product_id">Id</label> 
+                <input id="product_id" type="text" name="product_id" readonly value="<%= res.product_id %>">
+            </div>
+            <div class="row">
+                <label for="name">Name</label> 
+                <input id="name" type="text" name="name" readonly value="<%= res.name %>">
+            </div>
+            <div class="row">
+                <label for="price">Price</label> 
+                <input id="price" type="number" name="price" readonly value="<%= res.price %>">
+            </div>
+            <div class="row">
+                <label for="image_link">Image Link</label> 
+                <input id="image_link" type="text" name="image_link" readonly value="<%= res.image_link %>">
+            </div>
+            <div class="row">
+                <label for="description">Description</label> 
+                <input id="description" type="text" name="description" readonly value="<%= res.description %>">
+            </div>
+            <div class="row">
+                <input type="submit" name="doit" value="Delete">
+            </div>
+        </fieldset> 
+    </form>
+</div>
+
+<%- include("footer"); %>

@@ -1,0 +1,46 @@
+<%- include("header", {title: title}); %>
+
+<div class="content">
+    <h1>Product List</h1>
+
+    <p>Here is the information for all products.</p>
+    <p><a href="/eshop/product/create">Add Product</a></p>
+    <table class="table-product">
+        <thead>
+            <tr>
+                <th class="w-100 text-center">ID</th>
+                <th class="w-100 text-center">Name</th>
+                <th class="w-100 text-center">Price</th>
+                <th class="w-300 text-center">Description</th>
+                <th class="w-200 text-center">Category</th>
+                <th class="w-200 text-center">Amount in inventory</th>
+                <th class="w-100 text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><a href="/eshop/product/<%= row.product_id %>"><%= row.product_id %></a></td>
+                    <td class="text-left"><%= row.name %></td>
+                    <td class="text-right"><%= row.price.toFixed(2) %></td>
+                    <td class="text-left"><%= row.description %></td>
+                    <td class="text-left"><%= row.category %></td>
+                    <td class="text-right"><%= row.amount %></td>
+                    <td class="text-center">
+                        <a href="/eshop/product/edit/<%= row.product_id %>">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="/eshop/product/delete/<%= row.product_id %>">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <p>
+        <a href="/eshop/index">Index</a>
+    </p>
+</div>
+
+<%- include("footer"); %>

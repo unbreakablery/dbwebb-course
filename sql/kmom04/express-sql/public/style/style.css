@@ -1,0 +1,50 @@
+header {
+    background-color: #dddddd;
+    padding: 15px 15px;
+}
+header hub a,
+header hub span {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+header hub span {
+    padding: 0 5px;
+}
+
+table.table-accounts {
+    border: 1px solid gray;
+}
+
+table.table-accounts thead th {
+    background-color: #bdbdbd;
+}
+
+table.table-accounts tbody td {
+    padding: 5px 5px;
+}
+
+.w-50 {
+    width: 50px;
+}
+.w-100 {
+    width: 100px;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+
+footer {
+    background-color: #626262;
+    padding: 15px 15px;
+    color: #ffffff;
+    font-size: 20px;
+}

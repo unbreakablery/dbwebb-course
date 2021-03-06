@@ -1,0 +1,71 @@
+header {
+    background-color: #dddddd;
+    padding: 15px 15px;
+}
+header hub a,
+header hub span {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+header hub span {
+    padding: 0 5px;
+}
+
+table.table-category,
+table.table-product {
+    border: 1px solid gray;
+}
+
+table.table-category thead th,
+table.table-product thead th {
+    background-color: #bdbdbd;
+}
+
+table.table-category tbody td,
+table.table-product tbody td {
+    padding: 5px 5px;
+}
+
+.w-50 {
+    width: 50px;
+}
+.w-100 {
+    width: 100px;
+}
+.w-200 {
+    width: 200px;
+}
+.w-300 {
+    width: 300px;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+
+footer {
+    background-color: #626262;
+    padding: 15px 15px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    float: left;
+    width: 100px;
+}
+div.row {
+    margin: 10px 0px;
+}
+form {
+    margin: 10px 0px;
+}

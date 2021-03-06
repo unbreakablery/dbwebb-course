@@ -1,0 +1,34 @@
+<%- include("header", {title: title}); %>
+
+<h1>Account balance</h1>
+
+<p>Here is the balance for the accounts.</p>
+
+<p><i>To output the content of the account table.</i></p>
+<ul>
+    <%  for(const row of res) { %>
+        <li><%= JSON.stringify(row) %></li> 
+    <% }; %> 
+</ul>
+<table class="table-accounts">
+    <thead>
+        <tr>
+            <th class="w-50 text-center">ID</th>
+            <th class="w-100 text-center">Name</th>
+            <th class="w-100 text-center" text-right>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const row of res) { %>
+            <tr>
+                <td class="text-right"><%= row.id %></td>
+                <td class="text-center"><%= row.name %></td>
+                <td class="text-right"><%= row.balance.toFixed(1) %></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+<p>
+    <a href="index">Index</a>
+</p>
+<%- include("footer"); %>

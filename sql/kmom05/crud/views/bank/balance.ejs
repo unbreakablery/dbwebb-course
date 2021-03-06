@@ -1,0 +1,40 @@
+<%- include("header", {title: title}); %>
+
+<h1>Account balance</h1>
+
+<p>Here is the balance for the accounts.</p>
+
+<p><i>To output the content of the account table.</i></p>
+<pre><%#= JSON.stringify(res, null, 4) %></pre>
+
+<table class="table-accounts">
+    <thead>
+        <tr>
+            <th class="w-50 text-center">ID</th>
+            <th class="w-100 text-center">Name</th>
+            <th class="w-100 text-center" text-right>Balance</th>
+            <th class="w-100 text-center" text-right>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const row of res) { %>
+            <tr>
+                <td class="text-right"><a href="/bank/account/<%= row.id %>"><%= row.id %></a></td>
+                <td class="text-center"><%= row.name %></td>
+                <td class="text-right"><%= row.balance.toFixed(1) %></td>
+                <td class="text-center">
+                    <a href="/bank/edit/<%= row.id %>">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                    <a href="/bank/delete/<%= row.id %>">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+<p>
+    <a href="/bank/index">Index</a>
+</p>
+<%- include("footer"); %>

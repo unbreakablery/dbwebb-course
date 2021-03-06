@@ -1,0 +1,28 @@
+<% res = res[0] %>
+<%- include("header", {title: title}); %>
+<h1>Edit account details</h1>
+
+<p>This is details for account <%= res.id %></p>
+
+<form class="label-left" method="post" action="/bank/edit"> 
+    <fieldset> 
+        <legend>Edit account</legend>
+
+        <div class="row">
+            <label for="id">Id</label> 
+            <input id="id" type="text" name="id" readonly value="<%= res.id %>">
+        </div>
+        <div class="row">
+            <label for="name">Name</label> 
+            <input id="name" type="text" name="name" value="<%= res.name %>">
+        </div>
+        <div class="row">
+            <label for="balance">Balance</label> 
+            <input id="balance" type="number" name="balance" value="<%= res.balance %>">
+        </div>
+        <div class="row">
+            <input type="submit" name="doit" value="Edit">
+        </div>
+    </fieldset> 
+</form>
+<%- include("footer"); %>

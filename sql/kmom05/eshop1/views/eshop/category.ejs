@@ -1,0 +1,30 @@
+<%- include("header", {title: title}); %>
+
+<div class="content">
+    <h1>Product Categories</h1>
+
+    <p>Here is all categories for products.</p>
+    
+    <!-- <p><i>To output the content of the account table.</i></p>
+    <pre><%= JSON.stringify(res, null, 4) %></pre> -->
+    
+    <table class="table-category">
+        <thead>
+            <tr>
+                <th class="w-100 text-center">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><%= row.category %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <p>
+        <a href="/eshop/index">Index</a>
+    </p>    
+</div>
+
+<%- include("footer"); %>
