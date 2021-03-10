@@ -10,7 +10,7 @@
 
 <body>
     <header class="site-header">
-        <a href="index.php"><span class="site-title">Nättraby Vägmuseum</span></a>
+        <a href="index.php"><span class="site-title"><em>Nättraby</em> Vägmuseum</span></a>
         <nav class="site-navbar">
             <a class="<?php if ($page_title == 'Objekt') { ?>selected<?php } ?>" href="objects.php">Objekt</a>
             <a class="<?php if ($page_title == 'Artiklar') { ?>selected<?php } ?>" href="articles.php">Artiklar</a>

@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css2?family=Piazzolla&display=swap);
+/* @import url(https://fonts.googleapis.com/css2?family=Piazzolla&display=swap); */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900);
+/* @import url("<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">"); */
 
 html {
     background-color: #000;
@@ -9,7 +11,7 @@ html {
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-    font-family: Piazzolla, serif;
+    font-family: 'Montserrat', serif;
 }
 
 html::after {
@@ -34,19 +36,28 @@ img {
 
 .site-header {
     overflow: auto;
-    padding: 1em;
-    background-color: rgba(0, 0, 0, .74)
+    padding: 2em 1em;
+    background-color: rgba(22, 34, 57, .95);
+    text-transform: uppercase;
 }
 
 .site-header a {
     text-decoration: none;
     color: #fff;
-    margin: .5em
+    padding: .5em;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .site-title {
     float: left;
-    font-size: 2em
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.site-title em {
+    font-style: normal;
+    color: #f5a425;
 }
 
 .site-navbar {
@@ -56,11 +67,12 @@ img {
 
 .site-header .site-navbar a:hover,
 .site-header .site-navbar a:focus {
-    color: green;
+    color: #f5a425;
+    border: 1px solid #f5a425;
 }
 
 .selected {
-    color: green !important
+    color: #f5a425 !important;
 }
 
 .selected-multipage {
@@ -68,9 +80,10 @@ img {
 }
 
 .multipage-nav {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #182237;
     padding: 1em;
-    background-color: rgba(255, 255, 255, 0.95);
+    /* background-color: rgba(255, 255, 255, 0.95); */
+    background-color: rgba(245, 164, 37, 0.95);
     text-align: center
 }
 
@@ -154,8 +167,9 @@ img {
 
 .site-footer {
     text-align: center;
-    background-color: rgba(0, 0, 0, .74);
-    overflow: auto
+    background-color: rgba(22, 34, 57, .95);
+    overflow: auto;
+    margin-top: -1px;
 }
 
 .site-footer a {
@@ -183,7 +197,8 @@ img {
 }
 .content img, 
 .object-content img {
-    width: calc(100% - 1em);
+    /* width: calc(100% - 1em); */
+    width: 100%;
     max-width: 100%;
 }
 .content img.picture {
@@ -259,7 +274,7 @@ p.doc-sub-title {
     }
 
     .site-header {
-        background-color: #000;
+        /* background-color: #000; */
         text-align: center
     }
 
