@@ -100,6 +100,7 @@ async function handleInput(line) {
                 break;
             } else {
                 console.info("'picklist' command can have 1 parameter. (order_id) \n");
+                break;
             }
         case "ship":
             if (commands[1] != undefined && commands[1] != "") {
@@ -107,6 +108,7 @@ async function handleInput(line) {
                 break;
             } else {
                 console.info("'ship' command can have 1 parameter. (order_id) \n");
+                break;
             }
         default:
             console.info("Unknown command! \n");
