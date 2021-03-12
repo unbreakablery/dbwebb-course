@@ -1,0 +1,83 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Order details</h1>
+
+    <p>This is details for order : <%= order_id %>.</p>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center" colspan="2">Order Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-4 text-right">Order ID:</td>
+                <td class="col-8 text-left"><%= order[0].id %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Order Date:</td>
+                <td class="text-left"><%= order[0].order_date %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Customer ID:</td>
+                <td class="text-left"><%= order[0].customer_id %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Customer Name:</td>
+                <td class="text-left"><%= order[0].customer_name %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Order Status:</td>
+                <td class="text-left">
+                    <% if (order[0].status == "created") { %><span class="badge rounded-pill bg-primary"><%= order[0].status %></span><% } %>
+                    <% if (order[0].status == "updated") { %><span class="badge rounded-pill bg-info"><%= order[0].status %></span><% } %>
+                    <% if (order[0].status == "deleted") { %><span class="badge rounded-pill bg-danger"><%= order[0].status %></span><% } %>
+                    <% if (order[0].status == "ordered") { %><span class="badge rounded-pill bg-warning"><%= order[0].status %></span><% } %>
+                    <% if (order[0].status == "shipped") { %><span class="badge rounded-pill bg-success"><%= order[0].status %></span><% } %>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Total Order Lines:</td>
+                <td class="text-left"><%= order[0].total_order_lines %></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="/eshop/order-detail/create/<%= order[0].id %>" class="link-primary">Add New Order Line</a>
+    </p>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center">Product ID</th>
+                <th class="text-center">Product Name</th>
+                <th class="text-center">Product Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Cost</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of order_details) { %>
+                <tr>
+                    <td class="text-center"><%= row.product_id %></td>
+                    <td class="text-center"><%= row.product_name %></td>
+                    <td class="text-center"><%= row.product_price %></td>
+                    <td class="text-center"><%= row.quantity %></td>
+                    <td class="text-center"><%= row.cost %></td>
+                    <td class="text-center">
+                        <a href="/eshop/order-detail/edit/<%= row.order_id %>/<%= row.product_id%>" class="link-secondary">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="/eshop/order-detail/delete/<%= row.order_id %>/<%= row.product_id%>" class="link-secondary">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include("footer"); %>

@@ -1,0 +1,51 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Order List</h1>
+
+    <p>Here is the information for all orders.</p>
+    <p>
+        <a href="/eshop/order/create" class="link-primary">Add New Order</a>
+    </p>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Order Date</th>
+                <th class="text-center">Customer ID</th>
+                <th class="text-center">Customer Name</th>
+                <th class="text-center">Order Status</th>
+                <th class="text-center">Total Order Lines</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-center"><a href="/eshop/order/<%= row.id %>" class="link-success"><%= row.id %></a></td>
+                    <td class="text-center"><%= row.order_date %></td>
+                    <td class="text-center"><%= row.customer_id %></td>
+                    <td class="text-left"><%= row.customer_name %></td>
+                    <td class="text-center">
+                        <% if (row.status == "created") { %><span class="badge rounded-pill bg-primary"><%= row.status %></span><% } %>
+                        <% if (row.status == "updated") { %><span class="badge rounded-pill bg-info"><%= row.status %></span><% } %>
+                        <% if (row.status == "deleted") { %><span class="badge rounded-pill bg-danger"><%= row.status %></span><% } %>
+                        <% if (row.status == "ordered") { %><span class="badge rounded-pill bg-warning"><%= row.status %></span><% } %>
+                        <% if (row.status == "shipped") { %><span class="badge rounded-pill bg-success"><%= row.status %></span><% } %>
+                    </td>
+                    <td class="text-right"><%= row.total_order_lines %></td>
+                    <td class="text-center">
+                        <a href="/eshop/order/edit/<%= row.id %>" class="link-secondary">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="/eshop/order/delete/<%= row.id %>" class="link-secondary">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include("footer"); %>

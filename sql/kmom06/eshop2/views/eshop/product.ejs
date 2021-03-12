@@ -1,0 +1,43 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Product List</h1>
+
+    <p>Here is the information for all products.</p>
+    <p><a href="/eshop/product/create" class="link-primary">Add Product</a></p>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Category</th>
+                <th class="text-center">Amount in inventory</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><a href="/eshop/product/<%= row.product_id %>" class="link-success"><%= row.product_id %></a></td>
+                    <td class="text-left"><%= row.name %></td>
+                    <td class="text-right"><%= row.price.toFixed(2) %></td>
+                    <td class="text-left"><%= row.description %></td>
+                    <td class="text-left"><%= row.category %></td>
+                    <td class="text-right"><%= row.amount %></td>
+                    <td class="text-center">
+                        <a href="/eshop/product/edit/<%= row.product_id %>" class="link-secondary">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="/eshop/product/delete/<%= row.product_id %>" class="link-secondary">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include("footer"); %>

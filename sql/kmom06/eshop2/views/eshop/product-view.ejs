@@ -1,0 +1,43 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Product details</h1>
+
+    <p>This is details for product : <%= product %>.</p>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center" colspan="2">Product Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-4 text-right">Product ID:</td>
+                <td class="col-8 text-left"><%= res[0].product_id %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Product Name:</td>
+                <td class="text-left"><%= res[0].name %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Product Price:</td>
+                <td class="text-left"><%= res[0].price.toFixed(2) %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Description:</td>
+                <td class="text-left"><%= res[0].description %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Category:</td>
+                <td class="text-left"><%= res[0].category %></td>
+            </tr>
+            <tr>
+                <td class="text-right">Amount:</td>
+                <td class="text-left"><%= res[0].amount %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%- include("footer"); %>

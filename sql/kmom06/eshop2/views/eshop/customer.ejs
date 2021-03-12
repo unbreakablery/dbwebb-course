@@ -1,0 +1,30 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Customer List</h1>
+
+    <p>Here is all customers.</p>
+    
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">Name</th>
+                <th class="text-left">Address</th>
+                <th class="text-left">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><%= row.id %></td>
+                    <td class="text-left"><%= row.firstname %> <%= row.lastname %></td>
+                    <td class="text-left"><%= row.address %>, <%= row.city %>, <%= row.country %></td>
+                    <td class="text-left"><%= row.phone_number %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>  
+</div>
+
+<%- include("footer"); %>

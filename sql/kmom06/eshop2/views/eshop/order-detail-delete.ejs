@@ -1,0 +1,45 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Delete order line</h1>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form method="post" action="/eshop/order-detail/delete">
+                <div class="row mb-3">
+                    <label for="order_id" class="col-md-3 col-form-label text-right">Order ID:</label>
+                    <div class="col-md-9">
+                        <input type="text" name="order_id" id="order_id" class="form-control" value="<%= order_id %>" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="product_id" class="col-md-3 col-form-label text-right">Product Name:</label>
+                    <div class="col-md-9">
+                        <select name="product_id" id="product_id" class="form-control">
+                            <% for (const product of products) { %>
+                                <option value="<%= product.product_id %>" <% if (product_id == product.product_id) { %>selected<% } else { %>disabled<% } %>><%= product.name %> (Amount In Stock: <%= product.amount %>)</option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="quantity" class="col-md-3 col-form-label text-right">Quantity:</label>
+                    <div class="col-md-9">
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="<%= order_line[0].quantity %>" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="" class="col-md-3 col-form-label text-right"></label>
+                    <div class="col-md-9">
+                        <button class="btn btn-primary">Delete</button>
+                        <button class="btn btn-secondary" type="button" onclick="javascript:window.location.href='/eshop/order/<%= order_id %>';">Back</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<%- include("footer"); %>

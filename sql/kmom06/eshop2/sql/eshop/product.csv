@@ -1,0 +1,6 @@
+product_id,name,price,image_link,description
+"p-0001","mysql","10.00","/img/eshop/mysql.png","This is mysql."
+"p-0002","python","20.00","/img/eshop/python.png","This is python."
+"p-0003","nodejs","30.00","/img/eshop/nodejs.png","This is nodejs."
+"p-0004","html","40.00","/img/eshop/express.png","This is html."
+"p-0005","php","50.00","/img/eshop/php.png","This is php."

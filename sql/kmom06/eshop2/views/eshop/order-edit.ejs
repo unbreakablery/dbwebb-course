@@ -1,0 +1,51 @@
+
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Edit Order (ID: <%= order_id %>)</h1>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form method="post" action="/eshop/order/edit">
+                <div class="row mb-3">
+                    <label for="order_id" class="col-md-3 col-form-label text-right">Order ID:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="order_id" name="order_id" value="<%= order[0].id %>" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="customer_id" class="col-md-3 col-form-label text-right">Customer Name:</label>
+                    <div class="col-md-9">
+                        <select name="customer_id" id="customer_id" class="form-control">
+                            <% for (const customer of customers) { %>
+                                <option value="<%= customer.id %>" <% if (customer.id == order[0].customer_id) { %>selected<% } %>><%= customer.firstname %> <%= customer.lastname %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="status" class="col-md-3 col-form-label text-right">Order Status:</label>
+                    <div class="col-md-9">
+                        <select name="status" id="status" class="form-control">
+                            <option value="">Please choose status</option>
+                            <option value="deleted" <% if (order[0].status == "deleted") { %>selected<% } %>>deleted</option>
+                            <option value="ordered" <% if (order[0].status == "ordered") { %>selected<% } %>>ordered</option>
+                            <option value="shipped" <% if (order[0].status == "shipped") { %>selected<% } %>>shipped</option>
+                        </select>
+                    </div>
+                </div>               
+                <div class="row mb-3">
+                    <label for="" class="col-md-3 col-form-label text-right"></label>
+                    <div class="col-md-9">
+                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-secondary" type="button" onclick="javascript:window.location.href='/eshop/order';">Back</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<%- include("footer"); %>
