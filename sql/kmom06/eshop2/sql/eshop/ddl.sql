@@ -28,7 +28,10 @@ CREATE TABLE product
     image_link VARCHAR(255),
     description VARCHAR(255),
 
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (product_id),
+    UNIQUE KEY unique_product_id (product_id),
+    KEY index_product (product_id,name,description),
+    FULLTEXT KEY fulltext_product (product_id,name,description)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
@@ -74,6 +77,10 @@ CREATE TABLE product2inventory
     shelf VARCHAR(50) NOT NULL,
     amount INT(11) NOT NULL,
     PRIMARY KEY (product_id, shelf),
+    UNIQUE KEY unique_p2i (product_id,shelf),
+    KEY shelf (shelf),
+    KEY index_amount (amount),
+    FULLTEXT KEY fulltext_p2i (product_id,shelf),
     FOREIGN KEY (product_id) REFERENCES product (product_id) ON DELETE CASCADE,
     FOREIGN KEY (shelf) REFERENCES inventory (shelf) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -105,6 +112,8 @@ CREATE TABLE order2product
     product_id VARCHAR(10) NOT NULL,
     quantity INT(11) NOT NULL,
     PRIMARY KEY (order_id, product_id),
+    UNIQUE KEY unique_o2p (order_id,product_id),
+    KEY product_id (product_id),
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES product (product_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

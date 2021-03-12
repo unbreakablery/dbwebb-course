@@ -112,7 +112,7 @@ CREATE TABLE `log` (
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
-INSERT INTO `log` VALUES (1,'2021-03-12 04:42:06','New product was added with ID:p-0001'),(2,'2021-03-12 04:42:06','New product was added with ID:p-0002'),(3,'2021-03-12 04:42:06','New product was added with ID:p-0003'),(4,'2021-03-12 04:42:06','New product was added with ID:p-0004'),(5,'2021-03-12 04:42:06','New product was added with ID:p-0005');
+INSERT INTO `log` VALUES (1,'2021-03-12 09:34:20','New product was added with ID:p-0001'),(2,'2021-03-12 09:34:20','New product was added with ID:p-0002'),(3,'2021-03-12 09:34:20','New product was added with ID:p-0003'),(4,'2021-03-12 09:34:20','New product was added with ID:p-0004'),(5,'2021-03-12 09:34:20','New product was added with ID:p-0005');
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,6 +128,7 @@ CREATE TABLE `order2product` (
   `product_id` varchar(10) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`order_id`,`product_id`),
+  UNIQUE KEY `unique_o2p` (`order_id`,`product_id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `order2product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
   CONSTRAINT `order2product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE
@@ -186,7 +187,10 @@ CREATE TABLE `product` (
   `price` decimal(8,2) DEFAULT NULL,
   `image_link` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `unique_product_id` (`product_id`),
+  KEY `index_product` (`product_id`,`name`,`description`),
+  FULLTEXT KEY `fulltext_product` (`product_id`,`name`,`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -296,7 +300,10 @@ CREATE TABLE `product2inventory` (
   `shelf` varchar(50) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`shelf`),
+  UNIQUE KEY `unique_p2i` (`product_id`,`shelf`),
   KEY `shelf` (`shelf`),
+  KEY `index_amount` (`amount`),
+  FULLTEXT KEY `fulltext_p2i` (`product_id`,`shelf`),
   CONSTRAINT `product2inventory_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE,
   CONSTRAINT `product2inventory_ibfk_2` FOREIGN KEY (`shelf`) REFERENCES `inventory` (`shelf`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1144,4 +1151,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-12  0:00:55
+-- Dump completed on 2021-03-12  4:38:51
