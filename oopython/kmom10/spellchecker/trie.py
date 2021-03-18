@@ -7,6 +7,7 @@ from node import TrieNode
 class Trie(object):
     def __init__(self):
         self.root = TrieNode("")
+        self.output = []
      
     def add_word(self, word):
         """
@@ -57,12 +58,10 @@ class Trie(object):
                 if char in node.children:
                     node = node.children[char]
                 else:
-                    # return False
                     raise SearchMiss
             if node.is_end == True:
                 return True
             else:
-                # return False
                 raise SearchMiss
         except SearchMiss:
             SearchMiss.printError(x)
@@ -74,6 +73,7 @@ class Trie(object):
         """
         node = self.root
         parent = self.root
+        char = ''
         for char in x:
             if char in node.children:
                 parent = node

@@ -4,7 +4,6 @@ Tests Trie
 #pylint: disable=no-name-in-module,import-error
 from spellchecker import Spellchecker
 import unittest
-from unittest.mock import patch
 from node import TrieNode
 from trie import Trie
 
