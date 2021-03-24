@@ -1,0 +1,7 @@
+{
+    "host"                  : "localhost",
+    "user"                  : "user",
+    "password"              : "",
+    "database"              : "exam",
+    "multipleStatements"    : true
+}

@@ -1,0 +1,61 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Search</h1>
+
+    <p>Here is search page.</p>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form method="post" action="/exam/search/">
+                <div class="row mb-3">
+                    <label for="order_id" class="col-md-3 col-form-label text-right">Search Text:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="search" name="search" value="<%= search %>">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="" class="col-md-3 col-form-label text-right"></label>
+                    <div class="col-md-9">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Alias</th>
+                <th class="text-center">City</th>
+                <th class="text-center">Dog Name</th>
+                <th class="text-center">Dog Breed</th>
+                <th class="text-center">Breed Approve</th>
+                <th class="text-center">Registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><%= row.member_name %></td>
+                    <td class="text-left"><%= row.member_alias %></td>
+                    <td class="text-left"><%= row.member_city %></td>
+                    <td class="text-left">
+                        <a href="<%= row.dog_url %>" class="link-success"><%= row.dog_name %></a>
+                    </td>
+                    <td class="text-left"><%= row.dog_breed %></td>
+                    <td class="text-center">
+                        <% if (row.breed_approve == "yes") { %><span class="badge rounded-pill bg-success"><%= row.breed_approve %></span><% } %>
+                        <% if (row.breed_approve == "no") { %><span class="badge rounded-pill bg-danger"><%= row.breed_approve %></span><% } %>
+                    </td>
+                    <td class="text-center"><%= row.registered %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>  
+</div>
+
+<%- include("footer"); %>

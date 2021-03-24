@@ -1,0 +1,41 @@
+<%- include("header", {title: title}); %>
+
+<div class="container">
+    <h1>Reports</h1>
+
+    <p>Here is report of all members.</p>
+    
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Alias</th>
+                <th class="text-center">City</th>
+                <th class="text-center">Dog Name</th>
+                <th class="text-center">Dog Breed</th>
+                <th class="text-center">Breed Approve</th>
+                <th class="text-center">Registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of res) { %>
+                <tr>
+                    <td class="text-left"><%= row.member_name %></td>
+                    <td class="text-left"><%= row.member_alias %></td>
+                    <td class="text-left"><%= row.member_city %></td>
+                    <td class="text-left">
+                        <a href="<%= row.dog_url %>" class="link-success"><%= row.dog_name %></a>
+                    </td>
+                    <td class="text-left"><%= row.dog_breed %></td>
+                    <td class="text-center">
+                        <% if (row.breed_approve == "yes") { %><span class="badge rounded-pill bg-success"><%= row.breed_approve %></span><% } %>
+                        <% if (row.breed_approve == "no") { %><span class="badge rounded-pill bg-danger"><%= row.breed_approve %></span><% } %>
+                    </td>
+                    <td class="text-center"><%= row.registered %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>  
+</div>
+
+<%- include("footer"); %>

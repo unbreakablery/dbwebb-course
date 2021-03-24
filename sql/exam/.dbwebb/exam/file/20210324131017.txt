@@ -1,0 +1,20 @@
+20210324131017
+.
+total 16
+drwxr-xr-x+ 1 PC None     0 Mar 24 13:10 .dbwebb
+-rw-r--r--  1 PC None 10871 Mar 24 13:10 INSTRUKTION.md
+-rw-r--r--  1 PC None  3926 Mar 24 13:10 README_FIRST.md
+./.dbwebb
+total 0
+drwxr-xr-x+ 1 PC None 0 Mar 24 13:10 exam
+./.dbwebb/exam
+total 1
+drwxr-xr-x+ 1 PC None  0 Mar 24 13:10 file
+-rw-r--r--  1 PC None 36 Mar 24 13:10 id.md
+drwxr-xr-x+ 1 PC None  0 Mar 24 13:10 receipt
+./.dbwebb/exam/file
+total 1
+-rw-r--r-- 1 PC None 424 Mar 24 13:10 20210324131017.txt
+./.dbwebb/exam/receipt
+total 4
+-rw-r--r-- 1 PC None 611 Mar 24 13:10 20210324121014.md
