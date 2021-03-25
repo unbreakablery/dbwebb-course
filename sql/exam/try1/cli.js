@@ -55,6 +55,7 @@ async function handleInput(line) {
                 + "help, menu             - to show this menu. \n"
                 + "show                   - to show a report of all members. \n"
                 + "search <substring>     - to show a report filtered by substring. \n"
+                + "report                 - to show a fixed report of all members. \n"
             );
             break;
         case "show":
@@ -66,6 +67,9 @@ async function handleInput(line) {
             } else {
                 console.info("'search' command has one parameter - substring \n");
             }
+            break;
+        case "report":
+            await exam.cliShowFixedReport();
             break;
         default:
             console.info("Unknown command! \n");

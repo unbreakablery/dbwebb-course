@@ -106,3 +106,40 @@ END
 ;;
 
 DELIMITER ;
+
+--
+-- Procedure show_fixed_report()
+--
+DROP PROCEDURE IF EXISTS show_fixed_report;
+
+DELIMITER ;;
+
+CREATE PROCEDURE show_fixed_report() 
+BEGIN
+    SELECT
+        CONCAT(m.first_name, ' (', m.alias, ') ', m.last_name) AS member_name,
+        m.city,
+        d.name AS dog_name,
+        CONCAT(b.name, IF(LOWER(b.approve)='no', ' (X)', '')) AS breed_name,
+        m2d.registered 
+    FROM member2dog AS m2d
+    RIGHT OUTER JOIN MEMBER AS m ON m.member_id = m2d.member_id 
+    LEFT OUTER JOIN dog AS d ON d.dog_id = m2d.dog_id 
+    LEFT JOIN breed AS b ON b.breed_id = d.breed_id
+    UNION
+    SELECT
+        CONCAT(m.first_name, ' (', m.alias, ') ', m.last_name) AS member_name,
+        m.city,
+        d.name AS dog_name,
+        CONCAT(b.name, IF(LOWER(b.approve)='no', ' (X)', '')) AS breed_name,
+        m2d.registered 
+    FROM member2dog AS m2d
+    RIGHT OUTER JOIN MEMBER AS m ON m.member_id = m2d.member_id 
+    RIGHT OUTER JOIN dog AS d ON d.dog_id = m2d.dog_id 
+    LEFT JOIN breed AS b ON b.breed_id = d.breed_id
+    ORDER BY breed_name, registered DESC
+    ;
+END
+;;
+
+DELIMITER ;

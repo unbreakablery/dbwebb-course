@@ -56,7 +56,35 @@ async function cliShowReport(search = '') {
     console.info(str);
 }
 
+async function cliShowFixedReport() {
+    let sql;
+    let res;
+    let str;
+    
+    sql = `CALL show_fixed_report();`;
+    res = await db.query(sql, []);
+    str  = "+ ------------------------------------------ + ---------------------- + --------------------- + ----------------------- + ---------- + \n";
+    str += "|                    Name                    |          City          |          Dog          |          Breed          | Registered | \n";
+    str += "| ------------------------------------------ | ---------------------- | --------------------- | ----------------------- | ---------- | \n";
+    for (const row of res[0]) {
+        str += "|";
+        str += (row.member_name == null ? '' : row.member_name).padEnd(44);
+        str += "|";
+        str += (row.city == null ? '' : row.city).padEnd(24);
+        str += "|";
+        str += (row.dog_name == null ? '' : row.dog_name).padEnd(23);
+        str += "|";
+        str += (row.breed_name == null ? '' : row.breed_name).padEnd(25);
+        str += "|";
+        str += center((row.registered == null ? '' : row.registered.toString()), 12);
+        str += "| \n";
+    }
+    str += "+ ------------------------------------------ + ---------------------- + --------------------- + ----------------------- + ---------- + \n";
+    console.info(str);
+}
+
 module.exports = {
-    showReport:     showReport,
-    cliShowReport:  cliShowReport
+    showReport:         showReport,
+    cliShowReport:      cliShowReport,
+    cliShowFixedReport: cliShowFixedReport
 };
