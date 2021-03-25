@@ -1,0 +1,33 @@
+Task1
+Task1 consists of 2 sub tasks again.
+One thing is webclient and other is terminal client.
+First, I have designed the database for this project from excel file and then build ER diagram. (saved as er.pdf in doc/exam/)
+I used online tool(diagrams.net) for ER diagram.
+I have written lowercase letters on tables, views, procedures, triggers and column names, possibly separated by underscores in database.
+I have 5 sql files so that there are setup.sql(to create database schema and user), ddl.sql(to create tables and stored procedure), insert.sql(to insert all data into tables), dml.sql(to test select queries) and backup.sql(to create backup sql dump with --routines finally).
+Next, I have built web client task.
+It was built by nodejs/express/ejs.
+In the web client, all functions/method names will be camelcase.
+I saved the login detail to database in config/db/exam.json.
+I have created the route "/exam/index" that shows a welcome page and choose something suitable to display on the front page.
+Also, I have created the route "/exam/show" that shows a report of all members with their name, alias and location along with information about their dog's name and the name of the dog's breed and whether the breed is approved or not.
+It will use the stored procedure called "show_report" which takes one parameter - search string.
+If search string is empty(blank string), the procedure will get a report of all members.
+If search string is not empty, the procedure will get a report of members with most of all information filtered by "LIKE" operator.(it will use in Task2)
+Dog name will be linked to url so that when click dog name, you can get dog's website.
+I have used bootstrap and fontawesome to get a nice front-end.
+In terminal client, I have built as an infinite command loop where you can enter commands that the program executes.
+When you can enter "menu" or "help" command after running, it will show you all commands with helps.
+Also, when you can enter "exit" or click "ctrl+d", termial client will be ended.
+There is main command "show" so that you can see a report of all members as web client.
+
+Task2
+Here, I have added "search" feature on web client and terminal client.
+In web client, "Search" will have one pramater - substring.
+So, I have created new route "/examp/search" for it both get and post methods.
+Search page will have one form with a textbox for entering substring and a button for submitting.
+When you click "Search" button after entering substring, you can get a report of members with their name, alias and location along with information about their dog's name and the name of the dog's breed filtered by substring.
+Internally, it will run the stored procedure - "show_report" with parameter. ("call show_report(substring)")
+In terminal client, you can enter the command - "search <substring>" as like web client.
+
+Thank you!

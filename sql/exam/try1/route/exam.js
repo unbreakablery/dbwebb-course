@@ -1,14 +1,14 @@
 /**
  * Route for exam.
  */ 
-"use strict" ;
+"use strict";
 
 const express = require("express");
 const router = express.Router();
 const exam = require("../src/exam.js");
 
 const bodyParser = require ( "body-parser" );
-const urlencodedParser = bodyParser.urlencoded ({ extended : false });
+const urlencodedParser = bodyParser.urlencoded ({ extended: false });
 
 const sitename = "My Exam";
 
@@ -23,13 +23,12 @@ router.get("/index", (req, res) => {
 
 router.get("/show", async (req, res) => {
     let data = {
-        title: `Reports | ${sitename}`,
+        title: `Report | ${sitename}`,
         page: 'report'
     };
 
-    data.res = await exam.show_report('');
-
-    res.render("exam/reports", data);
+    data.res = await exam.showReport('');
+    res.render("exam/report", data);
 });
 
 router.get("/search", async (req, res) => {
@@ -39,8 +38,7 @@ router.get("/search", async (req, res) => {
         search: ''
     };
 
-    data.res = await exam.show_report();
-
+    data.res = await exam.showReport();
     res.render("exam/search", data);
 });
 
@@ -51,8 +49,7 @@ router.post("/search", urlencodedParser, async (req, res) => {
         search: req.body.search
     };
 
-    data.res = await exam.show_report(req.body.search);
-
+    data.res = await exam.showReport(req.body.search);
     res.render("exam/search", data);
 });
 

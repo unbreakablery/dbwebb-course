@@ -1,4 +1,4 @@
-"use strict" ;
+"use strict";
 
 const port = process.env.DBWEBB_PORT || 1337;
 const express = require ( "express" );

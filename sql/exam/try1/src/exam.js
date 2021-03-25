@@ -14,26 +14,24 @@ let db;
     });
 }) ();
 
-async function show_report(search = '') {
+async function showReport(search = '') {
     let sql = `CALL show_report(?);`;
     let res;
     
     res = await db.query(sql, [search]);
-    
     console.info(`SQL: ${sql} got ${res.length} rows.`);
 
     return res[0];
 }
 
 //functions for cli
-async function cli_show_report() {
+async function cliShowReport(search = '') {
     let sql;
     let res;
     let str;
     
-    sql = `CALL show_report();`;
-    res = await db.query(sql, []);
-    
+    sql = `CALL show_report(?);`;
+    res = await db.query(sql, [search]);
     str  = "+ ------------------- + -------------------- + ------------------- + ---------------- + --------------------------- + ------------- + ---------- + \n";
     str += "|     Member Name     |     Member Alias     |     Member City     |     Dog Name     |          Dog Breed          | Breed Approve | Registered | \n";
     str += "| ------------------- | -------------------- | ------------------- | ---------------- | --------------------------- | ------------- | ---------- | \n";
@@ -59,6 +57,6 @@ async function cli_show_report() {
 }
 
 module.exports = {
-    show_report:        show_report,
-    cli_show_report:    cli_show_report
+    showReport:     showReport,
+    cliShowReport:  cliShowReport
 };
