@@ -125,6 +125,13 @@ class Spellchecker:
                 else:
                     print("This command has only 'asc' or 'desc' option.")
 
+            elif choice == '5':
+                param = input("Enter word to delete: ")
+                if self.delete(param.lower()) == True:
+                    print("{} was deleted correctly!".format(param))
+                else:
+                    print("{} was in dictionary!".format(param))
+
             elif choice == "q":
                 break
             else:

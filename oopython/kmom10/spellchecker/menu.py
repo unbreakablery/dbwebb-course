@@ -26,5 +26,6 @@ class Menu:
         print("2. Get word suggestion")
         print("3. Change dictionary")
         print("4. Print all words")
+        print("5. Delete word")
         print("q. Exit")
         print("----------------------------------------------------------")

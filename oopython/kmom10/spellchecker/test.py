@@ -67,7 +67,8 @@ class TestTrie(unittest.TestCase):
 
     def test_trie_search_miss_raise(self):
         """TestTrie raise exception when word is not in dictionary"""
-        self.trie.search("Hello")
+        with self.assertRaises (ValueError) as _:
+            self.trie.search("Hello")
 
 class TestSpellchecker(unittest.TestCase):
     """Submodule for unittests, derives from unittest.TestCase"""
@@ -93,7 +94,8 @@ class TestSpellchecker(unittest.TestCase):
     
     def test_spellchecker_file_not_exist(self):
         """TestSpellchecker that raise file not exist exception"""
-        self.spellchecker.load_file("myfile.txt")
+        with self.assertRaises (ValueError) as _:
+            self.spellchecker.load_file("myfile.txt")
     
     def test_spellchecker_search_true(self):
         """TestSpellchecker that word is spelled correctly"""
