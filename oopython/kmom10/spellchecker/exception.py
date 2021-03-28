@@ -1,18 +1,23 @@
-# define Python user-defined exceptions
-class Error(Exception):
-    """Base class for other exceptions"""
-    pass
+"""Module exception"""
 
-class FileNotExist(Error):
-    """Raised when the file for dictionary doesn't exist"""
-    MESSAGE = "FileNotExist: File for dictionary doesn't exist."
-           
-    @staticmethod
-    def printError():
-        print(FileNotExist.MESSAGE)
+class FileNotExist(Exception):
+    """Raised error file not exists"""
+    def __init__(self, filename):
+        """init exception"""
+        self.filename = filename
+        super().__init__(filename)
 
-class SearchMiss(Error):
+    def print_error(self):
+        """Print Error"""
+        print("FileNotExist: File - '{}' for dictionary doesn't exist.".format(self.filename))
+
+class SearchMiss(Exception):
     """Raised when the input word is not in dictionary"""
-    @staticmethod
-    def printError(word):
-        print("SearchMiss: {} is NOT spelled correctly!".format(word))
+    def __init__(self, word):
+        """Raised when the input word is not in dictionary"""
+        self.word = word
+        super().__init__(word)
+
+    def print_error(self):
+        """Print Error"""
+        print("SearchMiss: '{}' is NOT spelled correctly!".format(self.word))

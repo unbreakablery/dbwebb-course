@@ -1,6 +1,7 @@
 
 """Menu class for Spellchecker"""
 class Menu:
+    """Class menu"""
     def __init__(self):
         """Menu Image"""
         self.title = r"""
@@ -15,6 +16,7 @@ class Menu:
         """
 
     def get_title(self):
+        """ get title """
         return self.title
 
     def show(self):

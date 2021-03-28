@@ -4,11 +4,13 @@ Trie implementation
 from exception import SearchMiss
 from node import TrieNode
 
-class Trie(object):
+class Trie:
+    """Implemente Trie Class"""
     def __init__(self):
+        """init trie"""
         self.root = TrieNode("")
         self.output = []
-     
+
     def add_word(self, word):
         """
         Function for adding word
@@ -23,7 +25,7 @@ class Trie(object):
                 node = new_node
         node.is_end = True
         return True
-         
+
     def dfs(self, node, pre):
         """
         Function for performing a DFS search
@@ -32,8 +34,8 @@ class Trie(object):
             self.output.append((pre + node.char))
         for child in node.children.values():
             self.dfs(child, pre + node.char)
-         
-    def start_with_pre(self, x = ''):
+
+    def start_with_pre(self, x=''):
         """
         Function for auto complete with prefix
         """
@@ -52,21 +54,16 @@ class Trie(object):
         """
         Function for searching word
         """
-        try:
-            node = self.root
-            for char in x:
-                if char in node.children:
-                    node = node.children[char]
-                else:
-                    raise SearchMiss
-            if node.is_end == True:
-                return True
+        node = self.root
+        for char in x:
+            if char in node.children:
+                node = node.children[char]
             else:
-                raise SearchMiss
-        except SearchMiss:
-            SearchMiss.printError(x)
-            return False
-    
+                raise SearchMiss(x)
+        if node.is_end:
+            return True
+        raise SearchMiss(x)
+
     def delete(self, x):
         """
         Function for deleting word
@@ -84,11 +81,10 @@ class Trie(object):
             del parent.children[char]
             del node
             return True
-        else:
-            node.is_end = False
-            return True
-    
-    def get_all_words(self, order = 'asc'):
+        node.is_end = False
+        return True
+
+    def get_all_words(self, order='asc'):
         """
         Function for getting all words from trie in order option(asc/desc)
         """
@@ -96,5 +92,5 @@ class Trie(object):
         if order == 'asc':
             words.sort()
         else:
-            words.sort(reverse = True)
+            words.sort(reverse=True)
         return words
