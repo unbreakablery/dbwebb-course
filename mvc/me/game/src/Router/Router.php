@@ -118,6 +118,16 @@ class Router
             $body = renderView("layout/result.php", $data);
             sendResponse($body);
             return;
+        } else if ($method === "GET" && $path === "/dice/history") {
+            $data = [
+                "header" => "Dice Game History",
+                "message" => "Hey!",
+                "title" => "View History",
+                "menu_history_class" => "selected"
+            ];
+            $body = renderView("layout/history.php", $data);
+            sendResponse($body);
+            return;
         } else if ($method === "GET" && $path === "/some/where") {
             $data = [
                 "header" => "Rainbow page",
