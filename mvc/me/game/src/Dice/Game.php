@@ -45,7 +45,7 @@ class Game
             
             $_SESSION['winner'] = 'computer';
             $this->updateHistory('computer');
-            
+            $this->applyBetAmount('computer');            
             $_SESSION['computer-wins']++;
         } elseif ($_SESSION['player-points'] == 21) {
             $data["message"] = "Congratulations!";
@@ -53,7 +53,7 @@ class Game
             
             $_SESSION['winner'] = 'player';
             $this->updateHistory('player');
-
+            $this->applyBetAmount('player');
             $_SESSION['player-wins']++;
         } else {
             $data["endFlag"] = false;
@@ -94,10 +94,12 @@ class Game
             $_SESSION['player-wins']++;
             $_SESSION['winner'] = 'player';
             $this->updateHistory('player');
+            $this->applyBetAmount('player');
         } elseif ($_SESSION['computer-points'] == 21) {
             $_SESSION['computer-wins']++;
             $_SESSION['winner'] = 'computer';
             $this->updateHistory('computer');
+            $this->applyBetAmount('computer');
         }
 
         if ($_SESSION['winner'] == '') {
@@ -105,10 +107,12 @@ class Game
                 $_SESSION['player-wins']++;
                 $_SESSION['winner'] = 'player';
                 $this->updateHistory('player');
+                $this->applyBetAmount('player');
             } else {
                 $_SESSION['computer-wins']++;
                 $_SESSION['winner'] = 'computer';
                 $this->updateHistory('computer');
+                $this->applyBetAmount('computer');
             }
         }
 
@@ -124,7 +128,8 @@ class Game
         $history = array(
             'winner' => $winner,
             'player-points' => $_SESSION['player-points'],
-            'computer-points' => $_SESSION['computer-points']
+            'computer-points' => $_SESSION['computer-points'],
+            'bet-amount' => (($winner === 'player') ? '+' : '-') . $_SESSION['bet-amount']
         );
 
         if (!isset($_SESSION['history'])) {
@@ -140,6 +145,17 @@ class Game
         }
         if (!isset($_SESSION['computer-wins'])) {
             $_SESSION['computer-wins'] = 0;
+        }
+    }
+
+    private function applyBetAmount($winner): void
+    {
+        if ($winner === 'player') {
+            $_SESSION['player-bitcoins'] += $_SESSION['bet-amount'];
+            $_SESSION['computer-bitcoins'] -= $_SESSION['bet-amount'];
+        } elseif ($winner === 'computer') {
+            $_SESSION['player-bitcoins'] -= $_SESSION['bet-amount'];
+            $_SESSION['computer-bitcoins'] += $_SESSION['bet-amount'];
         }
     }
 }

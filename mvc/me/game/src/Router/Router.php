@@ -82,6 +82,13 @@ class Router
         } else if ($method === "POST" && $path === "/dice") {
             $_SESSION['cnt-dices'] = intval($_POST['cnt-dices']);
             $_SESSION['dice-type'] = $_POST['dice-type'];
+            $p_bet_amount = floatval($_POST['bet-amount']);
+            $c_bet_amount = $_SESSION['computer-bitcoins'] / 100 * mt_rand(0, 50);
+            if ($p_bet_amount >= $c_bet_amount) {
+                $_SESSION['bet-amount'] = $c_bet_amount;
+            } else {
+                $_SESSION['bet-amount'] = $p_bet_amount;
+            }
             
             $data = [
                 "header" => "Welcome to Dice Game",

@@ -15,12 +15,15 @@ $message = $message ?? null;
 <h2><?= $message ?></h2>
 
 <?php if ($_SESSION['winner'] === 'player') { ?>
-    <h2 class="text-italic text-success">You won!</h2>
+    <h2 class="text-italic text-success">You won! (Bet Bonus: +<?= $_SESSION['bet-amount'] ?>)</h2>
 <?php } else { ?>
-    <h2 class="text-italic text-danger">You lose!</h2>
+    <h2 class="text-italic text-danger">You lose! (Bet Bonus: -<?= $_SESSION['bet-amount'] ?>)</h2>
 <?php } ?>
 <p>Your points: <?= $_SESSION['player-points'] ?></p>
 <p>Computer points: <?= $_SESSION['computer-points'] ?></p>
+
+<p>Your Bitcoins: <?= $_SESSION['player-bitcoins'] ?></p>
+<p>Computer Bitcoins: <?= $_SESSION['computer-bitcoins'] ?></p>
 
 <h2>Game History</h2>
 <p>Player wins: <?= $_SESSION['player-wins'] ?></p>
@@ -34,7 +37,10 @@ $message = $message ?? null;
     <p>Total Games: <?= count($_SESSION['history']) ?></p>
     <?php foreach($_SESSION['history'] as $history) { ?>
         <p>
-            Winner: <?= $history['winner'] ?>, Player points: <?= $history['player-points'] ?>, Computer points: <?= $history['computer-points'] ?>
+            Winner: <?= $history['winner'] ?>, 
+            Player points: <?= $history['player-points'] ?>, 
+            Computer points: <?= $history['computer-points'] ?>,
+            Bet Bonus: <?= $history['bet-amount'] ?>
         </p>
     <?php } ?>
 <?php } ?>

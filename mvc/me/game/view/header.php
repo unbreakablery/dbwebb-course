@@ -23,6 +23,7 @@ use function Mos\Functions\url;
     <nav>
         <a href="<?= url("/") ?>" class="<?= $menu_home_class ?>">Home</a>
         <a href="<?= url("/dice") ?>" class="<?= $menu_game21_class ?>">Game 21</a>
+        <a href="<?= url("/history") ?>" class="<?= $menu_history_class ?>">Balance & History</a>
         <a href="<?= url("/session") ?>" class="<?= $menu_session_class ?>">Session</a>
         <a href="<?= url("/debug") ?>" class="<?= $menu_debug_class ?>">Debug</a>
     </nav>

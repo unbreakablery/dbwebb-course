@@ -19,15 +19,18 @@ $message = $message ?? null;
     <?php if (isset($playerType) && $playerType === 'person') { ?>
         <h3>Your Points: <?= $_SESSION['player-points'] ?></h3>
     <?php } elseif (isset($playerType) && $playerType === 'computer') {?>
-        <h3>Your Points: <?= $_SESSION['computer-points'] ?></h3>
+        <h3>Computer Points: <?= $_SESSION['computer-points'] ?></h3>
     <?php } ?>
 <?php } else { ?>
     <h3>Your Points: 0</h3>
+    <h3>Your Current Bitcoins: <?= $_SESSION['player-bitcoins'] ?></h3>
+    <h3>Computer Current Bitcoins: <?= $_SESSION['computer-bitcoins'] ?></h3>
+    <h3>Bet Amount: <?= $_SESSION['bet-amount'] ?></h3>
 <?php } ?>
 <?php if (isset($endFlag) && $endFlag == false) { ?>
     <p class="btn-wrapper">
-        <a href="<?= url('/dice/player/roll') ?>" class="success-link">Roll again</a>
-        <a href="<?= url('/dice/computer/play') ?>" class="danger-link">Stop, and Computer turn</a>
+        <a href="<?= url('/dice/player/roll') ?>" class="success-link">Play to roll</a>
+        <a href="<?= url('/dice/computer/play') ?>" class="danger-link">Stop, and Computer plays</a>
     </p>
 <?php } else { ?>
     <p class="btn-wrapper">
