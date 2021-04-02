@@ -11,7 +11,8 @@ use function Mos\Functions\{
     renderTwigView,
     sendResponse,
     url,
-    initSession
+    initSession,
+    initGameSession
 };
 
 use Webprogramming\Dice\Game;
@@ -67,14 +68,7 @@ class Router
             sendResponse($body);
             return;
         } else if ($method === "GET" && $path === "/dice") {
-            $_SESSION['cnt-dices'] = 1;
-            $_SESSION['dice-type'] = 1;
-            $_SESSION['player-points'] = 0;
-            $_SESSION['computer-points'] = 0;
-            $_SESSION['winner'] = '';
-            $_SESSION['player-bitcoins'] = 10;
-            $_SESSION['computer-bitcoins'] = 100;
-            $_SESSION['bet-amount'] = 0;
+            initGameSession();
             
             $data = [
                 "header" => "Dice Game Setting",
@@ -88,6 +82,7 @@ class Router
         } else if ($method === "POST" && $path === "/dice") {
             $_SESSION['cnt-dices'] = intval($_POST['cnt-dices']);
             $_SESSION['dice-type'] = $_POST['dice-type'];
+            
             $data = [
                 "header" => "Welcome to Dice Game",
                 "message" => "please, play this dice game!",

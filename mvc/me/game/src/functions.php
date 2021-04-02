@@ -232,3 +232,38 @@ function initSession(): void
     $_SESSION['bet-amount'] = 0;
     $_SESSION['history'] = array();
 }
+
+
+
+/**
+ * Initialize the session for starting game.
+ *
+ * @return void
+ */
+function initGameSession(): void
+{
+    $_SESSION['cnt-dices'] = 1;
+    $_SESSION['dice-type'] = 1;
+    $_SESSION['player-points'] = 0;
+    $_SESSION['computer-points'] = 0;
+    $_SESSION['winner'] = '';
+    $_SESSION['bet-amount'] = 0;
+
+    if (!isset($_SESSION['player-wins'])) {
+        $_SESSION['player-wins'] = 0;
+    }
+    if (!isset($_SESSION['computer-wins'])) {
+        $_SESSION['computer-wins'] = 0;
+    }
+
+    if (!isset($_SESSION['player-bitcoins'])) {
+        $_SESSION['player-bitcoins'] = 10;
+    }
+    if (!isset($_SESSION['computer-bitcoins'])) {
+        $_SESSION['computer-bitcoins'] = 100;
+    }
+
+    if (!isset($_SESSION['history'])) {
+        $_SESSION['history'] = array();
+    }
+}
