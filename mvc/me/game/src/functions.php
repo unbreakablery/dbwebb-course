@@ -248,6 +248,8 @@ function initGameSession(): void
     $_SESSION['computer-points'] = 0;
     $_SESSION['winner'] = '';
     $_SESSION['bet-amount'] = 0;
+    $_SESSION['player-bet-amount'] = 0;
+    $_SESSION['computer-bet-amount'] = 0;
     
     if (!isset($_SESSION['player-wins'])) {
         $_SESSION['player-wins'] = 0;

@@ -55,7 +55,11 @@ class DiceHand
             $res .= $this->dices[$i]->getLastRoll() . " + ";
         }
 
-        return rtrim($res, " + ") . " = " . $this->sum;
+        if ($this->cntDices == 1) {
+            return rtrim($res, " + ");
+        } else {
+            return rtrim($res, " + ") . " = " . $this->sum;
+        }
     }
 
     public function getSum(): int

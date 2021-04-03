@@ -24,7 +24,7 @@ $message = $message ?? null;
         <label for="dice-type">Dice Type: </label>
         <select name="dice-type" id="dice-type">
             <option value="default">Default</option>
-            <option value="graphical">Graphical</option>
+            <option value="graphical" selected>Graphical</option>
         </select>
     </p>
     <p>

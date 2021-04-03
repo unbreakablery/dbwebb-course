@@ -25,7 +25,10 @@ $message = $message ?? null;
     <h3>Your Points: 0</h3>
     <h3>Your Current Bitcoins: <?= $_SESSION['player-bitcoins'] ?></h3>
     <h3>Computer Current Bitcoins: <?= $_SESSION['computer-bitcoins'] ?></h3>
-    <h3>Bet Amount: <?= $_SESSION['bet-amount'] ?></h3>
+    <hr>
+    <h3>Player Bet Amount: <?= $_SESSION['player-bet-amount'] ?></h3>
+    <h3>Computer Bet Amount: <?= $_SESSION['computer-bet-amount'] ?></h3>
+    <h3 class="text-success">Selected Bet Amount: <?= $_SESSION['bet-amount'] ?></h3>
 <?php } ?>
 <?php if (isset($endFlag) && $endFlag == false) { ?>
     <p class="btn-wrapper">

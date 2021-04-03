@@ -26,7 +26,8 @@ class GraphicalDice
 
     public function getLastRoll(): string
     {
-        return "<img src='/images/" . $this->roll . ".png' width='100' />";
-        return "<img src='" . url("/images") . $this->roll . ".png' width='100' />";
+        $index = rand(1, 6);
+        return "<img src='" . url("/images/") . $this->roll . ".png' class='rotate" 
+                . $index . "' width='100' />";
     }
 }

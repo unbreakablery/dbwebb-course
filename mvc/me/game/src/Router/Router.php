@@ -82,8 +82,11 @@ class Router
         } else if ($method === "POST" && $path === "/dice") {
             $_SESSION['cnt-dices'] = intval($_POST['cnt-dices']);
             $_SESSION['dice-type'] = $_POST['dice-type'];
-            $p_bet_amount = floatval($_POST['bet-amount']);
-            $c_bet_amount = $_SESSION['computer-bitcoins'] / 100 * mt_rand(0, 50);
+            $p_bet_amount = round(floatval($_POST['bet-amount']), 2);
+            $c_bet_amount = round($_SESSION['computer-bitcoins'] / 100 * mt_rand(0, 50), 2);
+            $_SESSION['player-bet-amount'] = $p_bet_amount;
+            $_SESSION['computer-bet-amount'] = $c_bet_amount;
+
             if ($p_bet_amount >= $c_bet_amount) {
                 $_SESSION['bet-amount'] = $c_bet_amount;
             } else {
@@ -128,12 +131,14 @@ class Router
             $body = renderView("layout/history.php", $data);
             sendResponse($body);
             return;
-        } else if ($method === "GET" && $path === "/some/where") {
+        } else if ($method === "GET" && $path === "/dice/rules") {
             $data = [
-                "header" => "Rainbow page",
-                "message" => "Hey, edit this to do it youreself!",
+                "header" => "Dice Game Rules",
+                "message" => "Here is game rules.",
+                "title" => "Dice Game Rules",
+                "menu_rules_class" => "selected"
             ];
-            $body = renderView("layout/page.php", $data);
+            $body = renderView("layout/rules.php", $data);
             sendResponse($body);
             return;
         }
