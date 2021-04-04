@@ -83,7 +83,14 @@ class Game
         }
         
         $diceHand = new DiceHand('default', $cntDices);
-        while ($_SESSION['computer-points'] < 16) {
+
+        if ($cntDices == 1) {
+            $maxLimitPoints = 18;
+        } else {
+            $maxLimitPoints = 16;
+        }
+
+        while ($_SESSION['computer-points'] < $maxLimitPoints) {
             $diceHand->roll();
             $_SESSION['computer-points'] += $diceHand->getSum();
         }

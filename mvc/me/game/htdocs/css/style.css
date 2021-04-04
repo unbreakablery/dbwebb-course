@@ -85,9 +85,16 @@ button.btn-submit {
     font-style: italic;
 }
 
+.text-bold {
+    font-weight: bold;
+}
 
 .text-success {
     color: #46c37b
+}
+
+.text-info {
+    color: #5c90d2
 }
 
 .text-danger {

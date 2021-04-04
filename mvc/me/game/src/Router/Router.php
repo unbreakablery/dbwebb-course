@@ -59,14 +59,6 @@ class Router
             $body = renderView("layout/debug.php", $data);
             sendResponse($body);
             return;
-        } else if ($method === "GET" && $path === "/twig") {
-            $data = [
-                "header" => "Twig page",
-                "message" => "Hey, edit this to do it youreself!",
-            ];
-            $body = renderTwigView("index.html", $data);
-            sendResponse($body);
-            return;
         } else if ($method === "GET" && $path === "/dice") {
             initGameSession();
             
@@ -122,6 +114,10 @@ class Router
             sendResponse($body);
             return;
         } else if ($method === "GET" && $path === "/dice/history") {
+            if (!isset($_SESSION['player-bitcoins']) || !isset($_SESSION['computer-bitcoins'])) {
+                initGameSession();
+            }
+            
             $data = [
                 "header" => "Dice Game History",
                 "message" => "Hey!",
