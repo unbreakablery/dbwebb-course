@@ -38,6 +38,6 @@ $message = $message ?? null;
         <span>(Your bitcoins: <?= $_SESSION['player-bitcoins'] ?>)</span>
     </p>
     <p class="btn-wrapper">
-        <button type="submit" class="btn-submit">Save</button>
+        <button type="submit" class="btn-submit">Start Game</button>
     </p>
 </form>

@@ -1,6 +1,10 @@
 **/node_modules
 **/__pycache__
 .git_
-.gitignore_
+.git__
+.git___
+.git_g
+.git_u
+.git_a
 *.zip
 *.rar
