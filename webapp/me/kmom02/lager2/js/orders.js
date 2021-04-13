@@ -16,8 +16,8 @@ var orders = {
 
         window.mainContainer.appendChild(title);
 
-        // fetch("https://lager.emilfolino.se/v2/orders?api_key=23369a444534d2765cdbc52396c07348")
-        fetch("https://lager.emilfolino.se/v2/orders?api_key=8343d9b29b9a221a4755bf7f0e3cf776")
+        fetch("https://lager.emilfolino.se/v2/orders?api_key=23369a444534d2765cdbc52396c07348")
+        // fetch("https://lager.emilfolino.se/v2/orders?api_key=8343d9b29b9a221a4755bf7f0e3cf776")
             .then(function (response) {
                 return response.json();
             }).then(function(result) {
