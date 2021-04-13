@@ -4,39 +4,24 @@ declare(strict_types=1);
 
 namespace Webprogramming\Dice;
 
-// use function Mos\Functions\{
-//     destroySession,
-//     redirectTo,
-//     renderView,
-//     renderTwigView,
-//     sendResponse,
-//     url
-// };
-
 /**
  * Class DiceHand.
  */
 class DiceHand
 {
-    private array $dices;
-    private int $sum;
-    private int $cntDices;
-    private string $diceType;
+    private $dices;
+    private $sum;
+    private $cntDices;
+    private $diceType;
 
     public function __construct($type = 'default', $cnt = 2)
     {
         $this->cntDices = $cnt;
         $this->diceType = $type;
         $this->sum = 0;
-        
-        if ($type == 'default') {
-            for ($i = 0; $i < $this->cntDices; $i++) {
-                $this->dices[$i] = new Dice();
-            }
-        } else {
-            for ($i = 0; $i < $this->cntDices; $i++) {
-                $this->dices[$i] = new GraphicalDice();
-            }
+
+        for ($i = 0; $i < $this->cntDices; $i++) {
+            ($this->diceType == 'default') ? $this->dices[$i] = new Dice() : $this->dices[$i] = new GraphicalDice();
         }
     }
 
@@ -55,11 +40,7 @@ class DiceHand
             $res .= $this->dices[$i]->getLastRoll() . " + ";
         }
 
-        if ($this->cntDices == 1) {
-            return rtrim($res, " + ");
-        } else {
-            return rtrim($res, " + ") . " = " . $this->sum;
-        }
+        return rtrim($res, " + ") . " = " . $this->sum;
     }
 
     public function getSum(): int

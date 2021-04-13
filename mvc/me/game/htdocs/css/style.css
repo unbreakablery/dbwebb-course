@@ -10,16 +10,18 @@ body {
 }
 
 main {
-    min-height: 20em;
+    min-height: 45em;
     padding: 0 1rem;
 }
 
 footer {
-    border-top: 1px solid #ccc;
-    min-height: 3em;
     color: #fff;
     text-align: center;
     background-color: rgba(22, 34, 57, .95);
+}
+
+footer p {
+    padding: 1rem 0;
 }
 
 nav {
@@ -39,6 +41,10 @@ nav a.selected,
 nav a:hover {
     color: #f5a425;
     border: 1px solid #f5a425;
+}
+
+h1 {
+    margin-top: .5rem;
 }
 
 p.btn-wrapper {
@@ -85,28 +91,24 @@ button.btn-submit {
     font-style: italic;
 }
 
-.text-bold {
-    font-weight: bold;
-}
 
 .text-success {
     color: #46c37b
-}
-
-.text-info {
-    color: #5c90d2
 }
 
 .text-danger {
     color: #d26a5c
 }
 
-input.bet-amount {
-    width: 180px;
+img.dice {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #777;
+    margin-right: 5px;
 }
 
-.rotate1 {
-    animation: rotation 1s linear;
+img.dice-selected {
+    opacity: 0.25;
 }
 
 @keyframes rotation {
@@ -116,6 +118,10 @@ input.bet-amount {
     to {
         transform: rotate(359deg);
     }
+}
+
+.rotate1 {
+    animation: rotation 1s linear;
 }
 
 .rotate2 {

@@ -1,0 +1,4 @@
+C:\cygwin64\home\PC\dbwebb-kurser\mvc\me\game\src\Dice\Game.php:52	The method roll uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+C:\cygwin64\home\PC\dbwebb-kurser\mvc\me\game\src\Dice\Game.php:69	The method playGame() has a Cyclomatic Complexity of 11. The configured cyclomatic complexity threshold is 10.
+C:\cygwin64\home\PC\dbwebb-kurser\mvc\me\game\src\Dice\Game.php:99	The method playGame uses an else expression. Else clauses are basically not necessary and you can simplify the code by not using them.
+C:\cygwin64\home\PC\dbwebb-kurser\mvc\me\game\src\Router\Router.php:26	The method dispatch() has a Cyclomatic Complexity of 21. The configured cyclomatic complexity threshold is 10.

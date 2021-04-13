@@ -227,45 +227,138 @@ function initSession(): void
     $_SESSION['winner'] = '';
     $_SESSION['player-wins'] = 0;
     $_SESSION['computer-wins'] = 0;
-    $_SESSION['player-bitcoins'] = 10;
-    $_SESSION['computer-bitcoins'] = 100;
-    $_SESSION['bet-amount'] = 0;
     $_SESSION['history'] = array();
 }
 
 
 
 /**
- * Initialize the session for starting game.
+ * Initialize the session for game setting.
  *
  * @return void
  */
-function initGameSession(): void
+function initSessionGameSetting(): void
 {
     $_SESSION['cnt-dices'] = 1;
     $_SESSION['dice-type'] = 1;
     $_SESSION['player-points'] = 0;
     $_SESSION['computer-points'] = 0;
     $_SESSION['winner'] = '';
-    $_SESSION['bet-amount'] = 0;
-    $_SESSION['player-bet-amount'] = 0;
-    $_SESSION['computer-bet-amount'] = 0;
-    
-    if (!isset($_SESSION['player-wins'])) {
-        $_SESSION['player-wins'] = 0;
-    }
-    if (!isset($_SESSION['computer-wins'])) {
-        $_SESSION['computer-wins'] = 0;
+}
+
+
+/**
+ * Save setting options in session.
+ *
+ * @return void
+ */
+function saveSettingSession(int $cntDices, string $diceType): void
+{
+    $_SESSION['cnt-dices'] = $cntDices;
+    $_SESSION['dice-type'] = $diceType;
+}
+
+
+/**
+ * Initialize the session for Yatzy setting.
+ *
+ * @return void
+ */
+function initSessionYatzySetting(): void
+{
+    $_SESSION['current-dices'] = array(0, 0, 0, 0, 0);
+    $_SESSION['current-round'] = 1;
+    $_SESSION['current-roll-cnt'] = 0;
+    $_SESSION['end-flag'] = false;
+    $_SESSION['winner'] = '';
+    $_SESSION['scorecard-you'] = array(
+        'ones' => 0,
+        'twos' => 0,
+        'threes' => 0,
+        'fours' => 0,
+        'fives' => 0,
+        'sixes' => 0,
+        'three-of-kind' => 0,
+        'four-of-kind' => 0,
+        'full-house' => 0,
+        'small-straight' => 0,
+        'large-straight' => 0,
+        'chance' => 0,
+        'yatzee' => 0,
+        'sum' => 0,
+        'total-score' => 0
+    );
+    $_SESSION['scorecard-computer'] = array(
+        'ones' => 0,
+        'twos' => 0,
+        'threes' => 0,
+        'fours' => 0,
+        'fives' => 0,
+        'sixes' => 0,
+        'three-of-kind' => 0,
+        'four-of-kind' => 0,
+        'full-house' => 0,
+        'small-straight' => 0,
+        'large-straight' => 0,
+        'chance' => 0,
+        'yatzee' => 0,
+        'sum' => 0,
+        'total-score' => 0
+    );
+}
+
+
+/**
+ * Get round title from ground number.
+ *
+ * @return void
+ */
+function getRoundTitle($round): string
+{
+    $roundTitle = '';
+    switch ($round) {
+        case 1:
+            $roundTitle = 'Ones';
+            break;
+        case 2:
+            $roundTitle = 'Twos';
+            break;
+        case 3:
+            $roundTitle = 'Threes';
+            break;
+        case 4:
+            $roundTitle = 'Fours';
+            break;
+        case 5:
+            $roundTitle = 'Fives';
+            break;
+        case 6:
+            $roundTitle = 'Sixes';
+            break;
+        case 7:
+            $roundTitle = 'Three Of a Kind';
+            break;
+        case 8:
+            $roundTitle = 'Four Of a Kind';
+            break;
+        case 9:
+            $roundTitle = 'Full House';
+            break;
+        case 10:
+            $roundTitle = 'Small Straight';
+            break;
+        case 11:
+            $roundTitle = 'Large Straight';
+            break;
+        case 12:
+            $roundTitle = 'Chance';
+            break;
+        case 13:
+            $roundTitle = 'YATZEE';
+            break;
+        default:
+            $roundTitle = 'Unknown';
     }
 
-    if (!isset($_SESSION['player-bitcoins'])) {
-        $_SESSION['player-bitcoins'] = 10;
-    }
-    if (!isset($_SESSION['computer-bitcoins'])) {
-        $_SESSION['computer-bitcoins'] = 100;
-    }
-
-    if (!isset($_SESSION['history'])) {
-        $_SESSION['history'] = array();
-    }
+    return $roundTitle;
 }

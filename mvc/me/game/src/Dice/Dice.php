@@ -4,15 +4,6 @@ declare(strict_types=1);
 
 namespace Webprogramming\Dice;
 
-// use function Mos\Functions\{
-//     destroySession,
-//     redirectTo,
-//     renderView,
-//     renderTwigView,
-//     sendResponse,
-//     url
-// };
-
 /**
  * Class Dice.
  */
@@ -20,7 +11,7 @@ class Dice
 {
     const FACES = 6;
 
-    private ?int $roll = null;
+    private $roll;
 
     public function roll(): int
     {

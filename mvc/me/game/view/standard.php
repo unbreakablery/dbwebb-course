@@ -15,8 +15,11 @@ $message = $message ?? null;
 <h3>Dice FACES:</h3>
 <p>
 <?php
-    for($i = 1; $i <=6; $i++) {
-        echo "<img src='images/" . $i . ".png' width='100' />";
-    }
+
+for ($i = 1; $i <= 6; $i++) {
+    echo "<img src='images/" . $i . ".png' width='50' />";
+}
+
 ?>
 </p>
+<p>You can see my code on <a href="https://github.com/beha20/mvc/tree/main/me/game">Github</a></p>
