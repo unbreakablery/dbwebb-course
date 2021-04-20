@@ -22,4 +22,4 @@ for ($i = 1; $i <= 6; $i++) {
 
 ?>
 </p>
-<p>You can see my code on <a href="https://github.com/beha20/mvc/tree/master/me/game">Github</a></p>
+<p>You can see my code on <a href="https://github.com/beha20/mvc">Github</a></p>

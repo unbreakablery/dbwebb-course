@@ -11,11 +11,11 @@ class DiceHand
 {
     private $dices;
     private $cntDices;
-    
+
     public function __construct($cnt = 5)
     {
         $this->cntDices = $cnt;
-        
+
         for ($i = 0; $i < $this->cntDices; $i++) {
             $this->dices[$i] = new GraphicalDice();
         }

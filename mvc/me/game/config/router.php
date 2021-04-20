@@ -10,7 +10,10 @@ declare(strict_types=1);
 
 use FastRoute\RouteCollector;
 
-$router = $router ?? null;
+$router = $router ?? new RouteCollector(
+    new \FastRoute\RouteParser\Std(),
+    new \FastRoute\DataGenerator\MarkBased()
+);
 
 $router->addRoute("GET", "/test", function () {
     // A quick and dirty way to test the router or the request.
@@ -24,7 +27,6 @@ $router->addRoute("GET", "/twig", "\Mos\Controller\TwigView");
 $router->addGroup("/session", function (RouteCollector $router) {
     $router->addRoute("GET", "", ["\Mos\Controller\Session", "index"]);
     $router->addRoute("GET", "/destroy", ["\Mos\Controller\Session", "destroy"]);
-    $router->addRoute("GET", "/init", ["\Mos\Controller\Session", "init"]);
 });
 
 $router->addGroup("/some", function (RouteCollector $router) {

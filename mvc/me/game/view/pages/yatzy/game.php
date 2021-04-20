@@ -30,15 +30,17 @@ $message = $message ?? null;
 </form>
 <p>My Dices</p>
 <p class="dices-wrapper">
-    <?php
-        for ($i = 0; $i < 5; $i++) {
-            $src = $_SESSION['current-dices'][$i];
-            echo ($src != 0) ?
-                "<img class='rotate$src dice' width='50' src='images/" . $src . ".png' data-dice-value='$i' />"
-                :
-                "<img class='dice' width='50' data-dice-value='$i' />";
-        }
-    ?>
+
+<?php
+for ($i = 0; $i < 5; $i++) {
+    $src = $_SESSION['current-dices'][$i];
+    echo ($src != 0) ?
+        "<img class='rotate$src dice' width='50' src='images/" . $src . ".png' data-dice-value='$i' />"
+        :
+        "<img class='dice' width='50' data-dice-value='$i' />";
+}
+?>
+
 </p>
 <p>Click on the dice you want to keep.</p>
 
@@ -46,7 +48,7 @@ $message = $message ?? null;
     <h2 class="fw-bold text-success"><?= $_SESSION['winner'] ?> won!</h2>
 <?php } ?>
 <h2 class="text-italic">Scorecard</h2>
-<table class="table table-dark table-striped table-bordered">
+<table class="table table-dark table-striped table-bordered scorecard">
   <thead>
     <tr>
         <th scope="col">Player</th>
@@ -137,6 +139,6 @@ $message = $message ?? null;
     </tr>
   </tbody>
 </table>
-<p>
+<p class="yatzy-btn-new-game">
     <a href="<?= url('/yatzy') ?>" class="danger-link">New Game</a>
 </p>

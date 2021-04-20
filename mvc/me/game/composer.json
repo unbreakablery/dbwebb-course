@@ -1,4 +1,6 @@
 {
+    "name": "beha20/game",
+    "description": "package for yatzy game",
     "autoload": {
         "psr-4": {
             "Mos\\": "src/",

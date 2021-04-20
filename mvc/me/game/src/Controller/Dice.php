@@ -29,7 +29,7 @@ class Dice
         ];
 
         initSessionGameSetting();
-        
+
         $body = renderView("layout/setting.php", $data);
 
         return $psr17Factory
@@ -49,8 +49,11 @@ class Dice
             "menu_game21_class" => "selected"
         ];
 
-        saveSettingSession(intval($_POST['cnt-dices']), $_POST['dice-type']);
-        
+        $cntDices = isset($_POST['cnt-dices']) ? intval($_POST['cnt-dices']) : 2;
+        $diceType = isset($_POST['dice-type']) ? $_POST['dice-type'] : 'default';
+
+        saveSettingSession($cntDices, $diceType);
+
         $body = renderView("layout/dice.php", $data);
 
         return $psr17Factory
@@ -64,7 +67,7 @@ class Dice
 
         $callable = new Game();
         $body = $callable->roll();
-        
+
         return $psr17Factory
             ->createResponse(200)
             ->withBody($psr17Factory->createStream($body));
@@ -76,7 +79,7 @@ class Dice
 
         $callable = new Game();
         $body = $callable->playGame();
-        
+
         return $psr17Factory
             ->createResponse(200)
             ->withBody($psr17Factory->createStream($body));

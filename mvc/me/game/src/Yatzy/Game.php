@@ -6,17 +6,17 @@ namespace Webprogramming\Yatzy;
 
 use Webprogramming\Yatzy\DiceHand;
 
-use function Mos\Functions\renderView;
-use function Mos\Functions\sendResponse;
-
 /**
  * Class Game.
  */
+
+
 class Game
 {
-    public function playComputerTurn($card) {
+    public function playComputerTurn($card)
+    {
         $this->clearCurrentDices();
-        
+
         $_SESSION[$card]['ones'] = rand(0, 6);
         $_SESSION[$card]['twos'] = rand(0, 5) * 2;
         $_SESSION[$card]['threes'] = rand(0, 5) * 3;
@@ -54,10 +54,10 @@ class Game
             $this->moveRound();
         } else {
             if (isset($data['sel-dices']) && strlen($data['sel-dices']) > 0) {
-                $sel_dices = str_split($data['sel-dices']);
-                $cntDices = 5 - count($sel_dices);
+                $selDices = str_split($data['sel-dices']);
+                $cntDices = 5 - count($selDices);
                 for ($i = 0; $i < 5; $i++) {
-                    if (!in_array($i, $sel_dices)) {
+                    if (!in_array($i, $selDices)) {
                         $_SESSION['current-dices'][$i] = 0;
                     }
                 }
@@ -95,8 +95,10 @@ class Game
         $diceHand = new DiceHand($cntDices);
         $diceHand->roll();
         $dices = $diceHand->getLastRoll();
-        for ($i = 0; $i < count($dices); $i++) {
-            for ($j = 0; $j < count($_SESSION['current-dices']); $j++) {
+        $cntDices = count($dices);
+        $cntCurDices = count($_SESSION['current-dices']);
+        for ($i = 0; $i < $cntDices; $i++) {
+            for ($j = 0; $j < $cntCurDices; $j++) {
                 if ($_SESSION['current-dices'][$j] == 0) {
                     $_SESSION['current-dices'][$j] = $dices[$i];
                     break;
@@ -155,17 +157,17 @@ class Game
 
     private function checkUppersection($card, $key, $value): void
     {
-        $cnt_values = array_count_values($_SESSION['current-dices']);
-        $_SESSION[$card][$key] = (in_array($value, array_keys($cnt_values))) ? $cnt_values[$value] * $value : 0;
+        $cntValues = array_count_values($_SESSION['current-dices']);
+        $_SESSION[$card][$key] = (in_array($value, array_keys($cntValues))) ? $cntValues[$value] * $value : 0;
     }
 
     private function checkOfKind($card, $key, $value): void
     {
-        $cnt_values = array_count_values($_SESSION['current-dices']);
+        $cntValues = array_count_values($_SESSION['current-dices']);
 
         $flag = false;
-        foreach ($cnt_values as $k => $v) {
-            if ($v >= $value) {
+        foreach ($cntValues as $k => $v) {
+            if ($k != "" && $v >= $value) {
                 $flag = true;
                 break;
             }
@@ -176,34 +178,34 @@ class Game
 
     private function checkFullHouse($card): void
     {
-        $cnt_values = array_count_values($_SESSION['current-dices']);
+        $cntValues = array_count_values($_SESSION['current-dices']);
 
-        $flag_kind_of_three = false;
-        $flag_pair = false;
-        foreach ($cnt_values as $k => $v) {
-            if ($v == 3) {
-                $flag_kind_of_three = true;
-            } elseif ($v == 2) {
-                $flag_pair = true;
+        $flagKindOfThree = false;
+        $flagPair = false;
+        foreach ($cntValues as $k => $v) {
+            if ($k != "" && $v == 3) {
+                $flagKindOfThree = true;
+            } elseif ($k != "" && $v == 2) {
+                $flagPair = true;
             }
         }
 
-        $_SESSION[$card]['full-house'] = ($flag_kind_of_three && $flag_pair) ? 25 : 0;
+        $_SESSION[$card]['full-house'] = ($flagKindOfThree && $flagPair) ? 25 : 0;
     }
 
     private function checkSmallStraight($card): void
     {
         $str = $this->dicesAsString();
-        $_SESSION[$card]['small-straight'] = (strpos($str, '1234') !== false || 
-                                                strpos($str, '2345') !== false || 
+        $_SESSION[$card]['small-straight'] = (strpos($str, '1234') !== false ||
+                                                strpos($str, '2345') !== false ||
                                                 strpos($str, '3456') !== false) ? 30 : 0;
     }
 
     private function checkLargeStraight($card): void
     {
         $str = $this->dicesAsString();
-        $_SESSION[$card]['large-straight'] = (strpos($str, '12345') !== false || 
-                                                strpos($str, '23456') !== false) ? 40 : 0; 
+        $_SESSION[$card]['large-straight'] = (strpos($str, '12345') !== false ||
+                                                strpos($str, '23456') !== false) ? 40 : 0;
     }
 
     private function checkChance($card): void
@@ -214,7 +216,8 @@ class Game
     private function getChance(): int
     {
         $sum = 0;
-        for ($i = 0; $i < count($_SESSION['current-dices']); $i++) {
+        $cntCurDices = count($_SESSION['current-dices']);
+        for ($i = 0; $i < $cntCurDices; $i++) {
             $sum += $_SESSION['current-dices'][$i];
         }
         return $sum;
@@ -222,11 +225,12 @@ class Game
 
     private function dicesAsString(): string
     {
-        $current_dices = $_SESSION['current-dices'];
-        sort($current_dices);
+        $currentDices = $_SESSION['current-dices'];
+        sort($currentDices);
         $str = '';
-        for ($i = 0; $i < count($current_dices); $i++) {
-            $str .= $current_dices[$i];
+        $cntCurDices = count($_SESSION['current-dices']);
+        for ($i = 0; $i < $cntCurDices; $i++) {
+            $str .= $currentDices[$i];
         }
         return $str;
     }
