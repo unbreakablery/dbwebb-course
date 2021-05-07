@@ -39,7 +39,7 @@ var order = {
             url: order.url,
             body: order.current
         }).then(function() {
-            let page = order.current.page ?? "/orders";
+            let page = order.current.page || "/orders";
             order.resetOrder();
             return m.route.set(page);
         });
@@ -64,22 +64,16 @@ var order = {
         switch (id) {
             case 100:
                 return "Ny";
-                break;
             case 200:
                 return "Packad";
-                break;
             case 400:
                 return "Skickad";
-                break;
             case 600:
                 return "Fakturerad";
-                break;
             case 800:
                 return "Retur";
-                break;
             case 900:
                 return "Återbetald";
-                break;
             default:
                 return "Unknown Status";
         }

@@ -21,7 +21,7 @@ const position = {
 
     geoError: function(error) {
         console.log('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+            'message: ' + error.message + '\n');
     }
 };
 

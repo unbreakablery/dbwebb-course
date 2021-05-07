@@ -48,16 +48,15 @@ function showMap() {
                 showPosition();
             }
         })
-        .catch(function(error) {
+        .catch(function() {
             map = L.map('map').setView([56.181932, 15.590525], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',    {
-                    attribution: `&copy;
-                    <a href="https://www.openstreetmap.org/copyright">
-                    OpenStreetMap</a> contributors`
-                }).addTo(map);
-                showPosition();
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',    {
+                attribution: `&copy;
+                <a href="https://www.openstreetmap.org/copyright">
+                OpenStreetMap</a> contributors`
+            }).addTo(map);
+            showPosition();
         });
-    
 }
 
 function showPosition() {
@@ -75,11 +74,12 @@ function showPosition() {
 }
 
 const mapView = {
-    oninit: function(vnode) {
+    oninit: function() {
         position.getPosition();
     },
     oncreate: function(vnode) {
         let id = vnode.children[0].attrs.id;
+
         order.load(id).then(function() {
             showMap();
         });
