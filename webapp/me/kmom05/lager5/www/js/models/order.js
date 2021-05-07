@@ -37,7 +37,7 @@ var order = {
             url: order.url,
             body: order.current
         }).then(function() {
-            let page = order.current.page ?? "/orders";
+            let page = order.current.page || "/orders";
             order.resetOrder();
             return m.route.set(page);
         });

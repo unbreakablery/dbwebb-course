@@ -37,13 +37,12 @@ const auth = {
                 email: auth.email,
                 password: auth.password
             }
-        }).then(function(result) {
+        }).then(function() {
             auth.token = "";
-           
             auth.login();
         }).catch(function(reason) {
             auth.message = reason.response.errors.detail;
-        });;
+        });
     }
 };
 
